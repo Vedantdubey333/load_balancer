@@ -8,6 +8,11 @@ const healthCheck = require('../src/healthCheck');
 const metrics = require('../src/metrics');
 const rateLimiter = require('../src/rateLimiter');
 
+// Root route to verify API is running
+router.get('/', (req, res) => {
+    res.json({ success: true, message: "Load Balancer API is running successfully!" });
+});
+
 // Route an IP using consistent hashing
 router.post('/route', rateLimiter.middleware(), (req, res) => {
     try {
